@@ -48,16 +48,15 @@ const Register = () => {
         avatar,
       };
       const res = await axios.post('/api/users', data);
-      authContext.setToken(res.data);
-      console.log(res.data);
+      authContext.setToken(res.data.token);
     } catch (err) {
       alertContext.setAlert('Error creating account');
     }
   };
 
-  // if (authContext.authenticated) {
-  //   return <Redirect to='/home' />;
-  // }
+  if (authContext.authenticated) {
+    return <Redirect to='/home' />;
+  }
 
   return (
     <form onSubmit={handleForm}>

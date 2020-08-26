@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { v4: uuidv4 } = require('uuid');
 
 const UserSchema = new mongoose.Schema({
   username: {
@@ -17,6 +18,10 @@ const UserSchema = new mongoose.Schema({
   },
   avatar: {
     type: String,
+  },
+  uid: {
+    type: String,
+    default: uuidv4(),
   },
   date: {
     type: Date,

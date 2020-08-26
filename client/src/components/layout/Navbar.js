@@ -23,14 +23,22 @@ const Navbar = () => {
 
   return (
     <nav className='ui inverted segment menu borderless fixed'>
-      <NavLink className='item' to='/home'>
-        Home
+      <NavLink
+        className='item'
+        to='/home'
+        style={{ letterSpacing: '2px', fontSize: '1.3rem' }}>
+        Probe
       </NavLink>
       <div className='right menu'>
         {authenticated ? (
-          <NavLink to='/profile' className='item'>
-            My Profile
-          </NavLink>
+          <Fragment>
+            <NavLink to='/post' className='item'>
+              Create A Post
+            </NavLink>
+            <NavLink to='/profile/me' className='item'>
+              My Profile
+            </NavLink>
+          </Fragment>
         ) : (
           <Fragment>
             <NavLink to='/login' className='item'>

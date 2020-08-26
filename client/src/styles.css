@@ -1,3 +1,8 @@
-.container {
+/* .container {
   padding-top: 90px;
+} */
+
+.post-container:hover {
+  background-color: #ddd !important;
+  cursor: pointer !important;
 }

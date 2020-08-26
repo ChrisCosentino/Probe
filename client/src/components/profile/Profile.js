@@ -2,6 +2,7 @@ import React, { useEffect, useContext, Fragment } from 'react';
 
 import ProfileContext from '../../context/profile/profileContext';
 import AuthContext from '../../context/auth/authContext';
+import ProfilePosts from './ProfilePosts';
 
 const Profile = () => {
   const profileContext = useContext(ProfileContext);
@@ -12,6 +13,12 @@ const Profile = () => {
   useEffect(() => {
     profileContext.getProfile(authContext.token);
   }, []);
+
+  const handleSignOut = () => {
+    localStorage.clear();
+    // refresh page
+    window.location.reload(true);
+  };
 
   return (
     <Fragment>
@@ -33,6 +40,9 @@ const Profile = () => {
         <div className='twelve wide column'>
           <h1>{profile.name}</h1>
           <h4>{profile.bio}</h4>
+          <button className='button ui red' onClick={handleSignOut}>
+            Sign Out
+          </button>
         </div>
       </div>
       <div className='ui grid inverted segment' style={{ textAlign: 'center' }}>
@@ -44,7 +54,7 @@ const Profile = () => {
               flexDirection: 'row',
               justifyContent: 'center',
             }}>
-            <i class='external alternate icon teal'></i>
+            <i className='external alternate icon teal'></i>
             {profile.website ? (
               <a
                 href={profile.website}
@@ -63,7 +73,7 @@ const Profile = () => {
               flexDirection: 'row',
               justifyContent: 'center',
             }}>
-            <i class='map pin icon red'></i>
+            <i className='map pin icon red'></i>
 
             {profile.location ? <p>{profile.location}</p> : <p>Location N/A</p>}
           </div>
@@ -75,12 +85,12 @@ const Profile = () => {
               flexDirection: 'row',
               justifyContent: 'center',
             }}>
-            <i class='calendar icon blue'></i>
+            <i className='calendar icon blue'></i>
             {profile.date ? <p>{profile.date.toString()}</p> : <p>Date N/A</p>}
           </div>
         </div>
       </div>
-      <div>Posts</div>
+      <ProfilePosts />
     </Fragment>
   );
 };

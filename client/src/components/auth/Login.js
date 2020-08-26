@@ -23,12 +23,13 @@ const Login = () => {
     }
   };
 
-  const handleForm = (e) => {
+  const handleForm = async (e) => {
     e.preventDefault();
     if (email === '' || password === '') {
       alertContext.setAlert('Please fill in all fields');
     } else {
       login();
+      await authContext.setUserId();
     }
   };
 
@@ -41,6 +42,7 @@ const Login = () => {
       const res = await axios.post('/api/auth', data);
 
       authContext.setToken(res.data.token);
+
       localStorage.setItem('authToken', res.data.token);
     } catch (err) {
       // wrong credentials

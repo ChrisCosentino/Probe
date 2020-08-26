@@ -8,14 +8,20 @@ const PostSchema = new mongoose.Schema({
   user: {
     type: Schema.Types.ObjectId,
   },
+  title: {
+    type: String,
+    required: true,
+  },
+  thumbnail: {
+    type: String,
+  },
   description: {
     type: String,
+    required: true,
   },
   images: [
     {
-      url: {
-        type: String,
-      },
+      type: String,
     },
   ],
   likes: [
